@@ -1,8 +1,10 @@
 package Actors;
 
+import Components.SpriteComponent;
 import Util.Position2D;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class Bullet extends AbstractActor {
     // TODO:
@@ -11,9 +13,9 @@ public class Bullet extends AbstractActor {
     private final int speed = 300;
     private double timeAlive;
     private final double life = 0.7;
-    private final String spritePath = "./data/img/bullet.png";
+    private final SpriteComponent spriteComponent = new SpriteComponent("./data/img/bullet.png");
 
-    public Bullet(Position2D<Float> position, int szX, int szY) {
+    public Bullet(Position2D<Float> position, float szX, float szY) throws IOException {
         super(position, szX, szY);
         this.firstPosition = position;
         this.timeAlive = 0;
@@ -22,7 +24,7 @@ public class Bullet extends AbstractActor {
     @Override
     public void update(float deltaT, Graphics2D g) {
         // TODO: or delete
-
+        spriteComponent.draw(g, this.getAABB());
     }
 
     @Override

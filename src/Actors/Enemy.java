@@ -1,16 +1,18 @@
 package Actors;
 
+import Components.SpriteComponent;
 import Util.Position2D;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class Enemy extends AbstractActor {
     // TODO:
     private int health;
     private final int speed = 120;
-    private final String spritePath = "./data/img/enemy.png";
+    private final SpriteComponent spriteComponent = new SpriteComponent("./data/img/enemy.png");
 
-    public Enemy(Position2D<Float> position, int szX, int szY) {
+    public Enemy(Position2D<Float> position, float szX, float szY) throws IOException {
         super(position, szX, szY);
         this.health = 100;
     }
@@ -24,6 +26,7 @@ public class Enemy extends AbstractActor {
     @Override
     public void update(float deltaT, Graphics2D g) {
         // TODO: or delete
+        spriteComponent.draw(g, this.getAABB());
 
 
     }
@@ -40,10 +43,6 @@ public class Enemy extends AbstractActor {
 
     public int getSpeed() {
         return speed;
-    }
-
-    public String getSpritePath() {
-        return spritePath;
     }
 
     public void setHealth(int health) {
