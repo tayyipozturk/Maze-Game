@@ -1,5 +1,7 @@
 package Components;
 
+import Core.GameWindow;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -10,20 +12,27 @@ public class PlayerInputComponent implements IRealTimeComponent, KeyListener {
     private boolean upPressed;
     private boolean downPressed;
     private boolean firePressed;
+    private static PlayerInputComponent instance = new PlayerInputComponent();
     // TODO: Add additional properties if required
 
     // TODO: Implement a constructor
-    public PlayerInputComponent() {
+    private PlayerInputComponent() {
         leftPressed = false;
         rightPressed = false;
         upPressed = false;
         downPressed = false;
         firePressed = false;
+        GameWindow.GetInstance().attachKeyListener(this);
     }
 
     @Override
     public void update(float deltaT) {
         // TODO:
+
+    }
+
+    public static PlayerInputComponent getInstance() {
+        return instance;
     }
 
     @Override
@@ -49,5 +58,25 @@ public class PlayerInputComponent implements IRealTimeComponent, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) firePressed = true;
         // TODO: You can also change this code if you want to handle inputs differently
         // this is given as a guideline to read key events
+    }
+
+    public boolean isUpPressed() {
+        return upPressed;
+    }
+
+    public boolean isDownPressed() {
+        return downPressed;
+    }
+
+    public boolean isLeftPressed() {
+        return leftPressed;
+    }
+
+    public boolean isRightPressed() {
+        return rightPressed;
+    }
+
+    public boolean isFirePressed() {
+        return firePressed;
     }
 }

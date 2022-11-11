@@ -11,10 +11,12 @@ public class Enemy extends AbstractActor {
     private int health;
     private final int speed = 120;
     private final SpriteComponent spriteComponent = new SpriteComponent("./data/img/enemy.png");
+    private String type;
 
-    public Enemy(Position2D<Float> position, float szX, float szY) throws IOException {
+    public Enemy(Position2D<Float> position, float szX, float szY, String type) throws IOException {
         super(position, szX, szY);
         this.health = 100;
+        this.type = type;
     }
 
     @Override
@@ -47,5 +49,9 @@ public class Enemy extends AbstractActor {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public String getType() {
+        return type;
     }
 }

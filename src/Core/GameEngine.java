@@ -98,7 +98,21 @@ public class GameEngine {
     public void instantiateEnemies(GameMapLoader map) {
         for (AABB enemy : map.getLoadedEnemyStationaryAABBs()) {
             try {
-                enemies.add(new Enemy(enemy.getPos(), enemy.getSizeX(), enemy.getSizeY()));
+                enemies.add(new Enemy(enemy.getPos(), enemy.getSizeX(), enemy.getSizeY(), "Stationary"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        for (AABB enemy : map.getLoadedEnemyXAABBs()) {
+            try {
+                enemies.add(new Enemy(enemy.getPos(), enemy.getSizeX(), enemy.getSizeY(), "Horizontal"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        for (AABB enemy : map.getLoadedEnemyYAABBs()) {
+            try {
+                enemies.add(new Enemy(enemy.getPos(), enemy.getSizeX(), enemy.getSizeY(), "Vertical"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

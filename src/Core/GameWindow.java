@@ -6,8 +6,7 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
-public class GameWindow
-{
+public class GameWindow {
     private static final long MIN_FRAME_TIME = 8; // milliseconds
     private GameEngine gameEngine;
     private JFrame gameFrame;
@@ -16,14 +15,13 @@ public class GameWindow
     private Dimension screenDim;
     private Color backgroundColor;
 
-    private GameWindow()
-    {
+    private GameWindow() {
         // Get a large screen wrt. user resolution
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         double width = d.getWidth() * 0.7;
         double height = width / 16.0 * 9.0;
         this.screenDim = new Dimension((int) width, (int) height);
-        backgroundColor = new Color(76,79,69);
+        backgroundColor = new Color(76, 79, 69);
 
         gameFrame = new JFrame();
         gamePanel = new JPanel();
@@ -52,24 +50,21 @@ public class GameWindow
             // Double Buffered Window
             gameCanvas.createBufferStrategy(2);
             long elapsedTime = 0;
-            for(long currentTime = System.currentTimeMillis(); true;
-                currentTime += elapsedTime)
-            {
+            for (long currentTime = System.currentTimeMillis(); true;
+                 currentTime += elapsedTime) {
                 elapsedTime = System.currentTimeMillis() - currentTime;
-                float elapsedTimeSeconds = (float)elapsedTime / 1000.0f;
+                float elapsedTimeSeconds = (float) elapsedTime / 1000.0f;
 
                 BufferStrategy bs = gameCanvas.getBufferStrategy();
                 // Get the Current Buffer
                 Graphics2D graphics = (Graphics2D) bs.getDrawGraphics();
                 graphics.clearRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
-                if(gameEngine != null)
+                if (gameEngine != null)
                     gameEngine.update(elapsedTimeSeconds, graphics);
-                else
-                {
+                else {
                     GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
                     BufferCapabilities bufferCapabilities = gc.getBufferCapabilities();
-                    if(!bufferCapabilities.isPageFlipping() || bufferCapabilities.isFullScreenRequired())
-                    {
+                    if (!bufferCapabilities.isPageFlipping() || bufferCapabilities.isFullScreenRequired()) {
                         graphics.setColor(Color.black);
                         graphics.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
                         graphics.setColor(Color.red);
@@ -78,9 +73,7 @@ public class GameWindow
                         graphics.drawString("Page Flipping: " + (bufferCapabilities.isPageFlipping() ? "Available" : "Not Supported"), 100, 130);
                         graphics.drawString("Full Screen Required: " + (bufferCapabilities.isFullScreenRequired() ? "Required" : "Not Required"), 100, 160);
                         graphics.drawString("Multiple Buffer Capable: " + (bufferCapabilities.isMultiBufferAvailable() ? "Yes" : "No"), 100, 190);
-                    }
-                    else
-                    {
+                    } else {
                         graphics.setColor(Color.black);
                         graphics.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
                         graphics.setColor(Color.green);
@@ -93,19 +86,18 @@ public class GameWindow
                     }
                 }
                 graphics.dispose();
-                if (!bs.contentsLost())
-                {
+                if (!bs.contentsLost()) {
                     bs.show();
                 }
                 // Sleep here so that fast systems does not
                 // run fast
-                try
-                {
+                try {
                     // Delay and give other threads a chance to run
                     long sleepTime = Math.max(0, MIN_FRAME_TIME - elapsedTime);
                     // Don't force a context swich here
-                    if(sleepTime > 0)  Thread.sleep(elapsedTime); // milliseconds
-                } catch (InterruptedException ignore) {}
+                    if (sleepTime > 0) Thread.sleep(elapsedTime); // milliseconds
+                } catch (InterruptedException ignore) {
+                }
             }
         });
         // Start the thread
@@ -114,23 +106,21 @@ public class GameWindow
 
     // Singleton Pattern
     private static final GameWindow MAIN_WINDOW = new GameWindow();
-    public static GameWindow GetInstance()
-    {
+
+    public static GameWindow GetInstance() {
         return MAIN_WINDOW;
     }
 
     // Interface
-    public void setGame(GameEngine engine)
-    {
+    public void setGame(GameEngine engine) {
         this.gameEngine = engine;
     }
 
-    public void attachKeyListener(KeyListener kl)
-    {
+    public void attachKeyListener(KeyListener kl) {
         gameCanvas.addKeyListener(kl);
     }
-    public Dimension getScreenDimension()
-    {
+
+    public Dimension getScreenDimension() {
         return screenDim;
     }
 }

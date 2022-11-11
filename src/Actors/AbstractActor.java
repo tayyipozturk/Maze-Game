@@ -10,10 +10,6 @@ import java.awt.*;
 // Everything in the game is an actor
 public abstract class AbstractActor extends AABB {
     // TODO:
-
-    private Position2D<Float> position;
-    private float szX;
-    private float szY;
     private SpriteComponent spriteComponent;
 
     public AbstractActor(Position2D<Float> position, float szX, float szY) {
@@ -27,9 +23,21 @@ public abstract class AbstractActor extends AABB {
 
     public abstract boolean isDead();
 
-    public Position2D<Float> getPosition() {
-        return position;
+    @Override
+    public Position2D<Float> getPos() {
+        return super.getPos();
     }
+
+    @Override
+    public float getSizeX() {
+        return super.getSizeX();
+    }
+
+    @Override
+    public float getSizeY() {
+        return super.getSizeY();
+    }
+
 
     public AABB getAABB() {
         return this;
