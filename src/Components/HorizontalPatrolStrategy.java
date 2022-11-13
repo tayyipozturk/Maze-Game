@@ -1,10 +1,14 @@
 package Components;
 
-public class HorizontalPatrolStrategy extends AbstractPatrolStrategy
-{
+public class HorizontalPatrolStrategy extends AbstractPatrolStrategy {
+
+    public HorizontalPatrolStrategy(int speed) {
+        super.setSpeed(speed);
+    }
+
     @Override
-    public void update(float deltaT)
-    {
+    public void update(float deltaT) {
         // TODO:
+        setSpeed(getSpeed());
     }
 }

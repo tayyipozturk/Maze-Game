@@ -6,8 +6,7 @@ import Util.AABB;
 import Util.GameMapLoader;
 import Util.Position2D;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -40,6 +39,22 @@ public class GameEngine {
 
         // TODO: Add code if your design requires so
         instantiateAllActors(map);
+        ArrayList<AbstractActor> collisionBoxes = new ArrayList<>();
+        collisionBoxes.addAll(walls);
+        collisionBoxes.addAll(enemies);
+        collisionBoxes.addAll(powerUps);
+        collisionBoxes.add(player);
+        for (AbstractActor actor : collisionBoxes) {
+            CollisionComponent collisionComponent = new CollisionComponent(actor, player, enemies, powerUps, walls);
+            actor.addCollisionComponent(collisionComponent);
+            miscComponents.add(collisionComponent);
+        }
+
+        for (Bullet bullet : player.getBullets()) {
+            BulletEnemyCollisionHandler bulletEnemyCollisionHandler = new BulletEnemyCollisionHandler(bullet, enemies);
+            bullet.attachBulletEnemyCollisionHandler(bulletEnemyCollisionHandler);
+            miscComponents.add(bulletEnemyCollisionHandler);
+        }
     }
 
     public GameEngine(String mapFilePath, Dimension screenSize) {
@@ -53,8 +68,8 @@ public class GameEngine {
         this.miscComponents = new ArrayList<IRealTimeComponent>();
 
         // TODO: Add code if your design requires so
-
         ResetGame();
+
     }
 
     public synchronized void update(float deltaT, Graphics2D currentDrawBuffer) {

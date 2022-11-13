@@ -32,11 +32,11 @@ public class AABB
         Hit result = new Hit();
         // Check X
         float diffX = ((pos.x + 0.5f * szX) -
-                       (other.pos.x + 0.5f * other.szX));
+                (other.pos.x + 0.5f * other.szX));
         result.offsetX = (this.szX + other.szX) * 0.5f - abs(diffX);
         // Check Y
         float diffY = ((pos.y + 0.5f * szY) -
-                       (other.pos.y + 0.5f * other.szY));
+                (other.pos.y + 0.5f * other.szY));
         result.offsetY = (this.szY + other.szY) * 0.5f - abs(diffY);
         result.signX = (diffX < 0) ? -1 : 1;
         result.signY = (diffY < 0) ? -1 : 1;
@@ -125,6 +125,6 @@ public class AABB
     public Position2D<Float> getCenter()
     {
         return new Position2D<>(pos.x + szX * 0.5f,
-                               pos.y + szY * 0.5f);
+                pos.y + szY * 0.5f);
     }
 }
