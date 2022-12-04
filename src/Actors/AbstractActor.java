@@ -8,14 +8,11 @@ import java.awt.*;
 import java.util.ArrayList;
 
 // Meta Actor Class
-// Everything in the game is an actor
 public abstract class AbstractActor extends AABB {
-    // TODO:
     private final PlayerInputComponent playerInputComponent = PlayerInputComponent.getInstance();
     private ArrayList<IRealTimeComponent> realTimeComponents;
     private ArrayList<IDrawable> drawableComponents;
     private CollisionComponent collisionComponent;
-    private static ArrayList<AbstractActor> allActors = new ArrayList<>();
     private static ArrayList<Enemy> enemies = new ArrayList<>();
 
     private int health;
@@ -29,11 +26,9 @@ public abstract class AbstractActor extends AABB {
         this.drawableComponents = new ArrayList<>();
         this.collisionComponent = new CollisionComponent();
         damage = 10;
-        allActors.add(this);
     }
 
     public void update(float deltaT, Graphics2D g) {
-        // TODO:
         for (IRealTimeComponent component : realTimeComponents) {
             component.update(deltaT);
         }
@@ -111,36 +106,12 @@ public abstract class AbstractActor extends AABB {
         drawableComponents.add(spriteComponent);
     }
 
-    public ArrayList<IDrawable> getDrawableComponents() {
-        return drawableComponents;
-    }
-
-    public void addRealTimeComponent(IRealTimeComponent component) {
-        realTimeComponents.add(component);
-    }
-
-    public ArrayList<IRealTimeComponent> getRealTimeComponents() {
-        return realTimeComponents;
-    }
-
     public void addCollisionComponent(CollisionComponent collisionComponent) {
         this.collisionComponent = collisionComponent;
     }
 
     public CollisionComponent getCollisionComponent() {
         return collisionComponent;
-    }
-
-    public static ArrayList<AbstractActor> getAllActors() {
-        return allActors;
-    }
-
-    public static void addActor(AbstractActor actor) {
-        allActors.add(actor);
-    }
-
-    public static void removeActor(AbstractActor actor) {
-        allActors.remove(actor);
     }
 
     public static ArrayList<Enemy> getEnemies() {
@@ -150,9 +121,4 @@ public abstract class AbstractActor extends AABB {
     public static void addEnemy(Enemy enemy) {
         enemies.add(enemy);
     }
-
-    public static void removeEnemy(Enemy enemy) {
-        enemies.remove(enemy);
-    }
-
 }

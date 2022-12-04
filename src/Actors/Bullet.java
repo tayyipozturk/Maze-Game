@@ -3,16 +3,12 @@ package Actors;
 import Components.BulletEnemyCollisionHandler;
 import Components.PlayerInputComponent;
 import Components.SpriteComponent;
-import Core.GameEngine;
-import Core.GameWindow;
 import Util.Position2D;
 
-import javax.sound.midi.SysexMessage;
 import java.awt.*;
 import java.io.IOException;
 
 public class Bullet extends AbstractActor {
-    // TODO:
     private double createTime;
     private final double maxLifeTime = 0.7;
     private String direction;
@@ -35,7 +31,6 @@ public class Bullet extends AbstractActor {
 
     @Override
     public void update(float deltaT, Graphics2D g) {
-        // TODO: or delete
         if (getIsAlive()) {
             super.update(deltaT, g);
             if (direction.equals("up")) {
@@ -64,7 +59,6 @@ public class Bullet extends AbstractActor {
 
     @Override
     public boolean isDead() {
-        //TODO: If bullet collides with a wall or with an enemy, it dies. This is also equivalent to the bullet being out of bounds.
         return !getIsAlive();
     }
 

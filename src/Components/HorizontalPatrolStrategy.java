@@ -8,7 +8,6 @@ public class HorizontalPatrolStrategy extends AbstractPatrolStrategy {
 
     @Override
     public void update(float deltaT) {
-        // TODO:
         setSpeed(getSpeed());
     }
 }

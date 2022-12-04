@@ -10,7 +10,6 @@ public class BulletEnemyCollisionHandler implements IRealTimeComponent {
     private ArrayList<Enemy> enemies;
     private boolean isCollided;
     private Enemy collidedEnemy;
-    // TODO:
 
     public BulletEnemyCollisionHandler(Bullet bullet, ArrayList<Enemy> enemies) {
         this.bullet = bullet;
@@ -21,7 +20,6 @@ public class BulletEnemyCollisionHandler implements IRealTimeComponent {
 
     @Override
     public void update(float deltaT) {
-        // TODO:
         checkCollision();
     }
 

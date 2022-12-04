@@ -4,7 +4,6 @@ import Actors.*;
 import Components.*;
 import Util.AABB;
 import Util.GameMapLoader;
-import Util.Position2D;
 
 import java.awt.*;
 import java.io.IOException;
@@ -13,14 +12,12 @@ import java.util.ArrayList;
 public class GameEngine {
     private final Dimension screenSize;
     private final String currentMap;
-    // Game Objects
+
     private Player player;
-    // Concrete Types of the game
     private ArrayList<Wall> walls;
     private ArrayList<Enemy> enemies;
     private ArrayList<PowerUp> powerUps;
     private ArrayList<Bullet> bulletsInCirculation;
-    // Add extra components if you like
     private ArrayList<IRealTimeComponent> miscComponents;
 
     private void ResetGame() {
@@ -37,7 +34,6 @@ public class GameEngine {
             System.exit(1);
         }
 
-        // TODO: Add code if your design requires so
         instantiateAllActors(map);
         ArrayList<AbstractActor> collisionBoxes = new ArrayList<>();
         collisionBoxes.addAll(walls);
@@ -67,19 +63,11 @@ public class GameEngine {
         this.bulletsInCirculation = new ArrayList<Bullet>();
         this.miscComponents = new ArrayList<IRealTimeComponent>();
 
-        // TODO: Add code if your design requires so
         ResetGame();
 
     }
 
     public synchronized void update(float deltaT, Graphics2D currentDrawBuffer) {
-        // ==================================== //
-        // YOU SHOULD NOT CHANGE THIS FUNCTION  //
-        // ============================================= //
-        // THIS SHOULD ALREADY DOES EVERYTHING YOU NEED  //
-        // ============================================= //
-        // You can still change it though with a penalty.
-
         // Do update first
         walls.forEach(actor -> actor.update(deltaT, currentDrawBuffer));
         enemies.forEach(actor -> actor.update(deltaT, currentDrawBuffer));

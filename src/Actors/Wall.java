@@ -15,7 +15,6 @@ public class Wall extends AbstractActor {
 
     @Override
     public void update(float deltaT, Graphics2D g) {
-        // TODO: or delete
         super.update(deltaT, g);
     }
 

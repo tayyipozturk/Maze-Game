@@ -7,7 +7,6 @@ import java.awt.*;
 import java.io.IOException;
 
 public class PowerUp extends AbstractActor {
-    // TODO:
     private boolean isCollected;
 
     public PowerUp(Position2D<Float> position, float szX, float szY) throws IOException {
@@ -18,7 +17,6 @@ public class PowerUp extends AbstractActor {
 
     @Override
     public void update(float deltaT, Graphics2D g) {
-        // TODO or delete
         super.update(deltaT, g);
         if (getCollisionComponent().getCollisionListener().getIsCollidedWithPlayer()) {
             isCollected = true;
@@ -28,7 +26,6 @@ public class PowerUp extends AbstractActor {
 
     @Override
     public boolean isDead() {
-        // TODO: If collides with a player, it dies.
         return isCollected;
     }
 

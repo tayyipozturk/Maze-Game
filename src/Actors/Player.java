@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Player extends AbstractActor {
-
-    // TODO:
     private ArrayList<Bullet> bullets = new ArrayList<>();
 
     public Player(Position2D<Float> position, float szX, float szY) throws IOException {
@@ -21,8 +19,6 @@ public class Player extends AbstractActor {
 
     @Override
     public void update(float deltaT, Graphics2D g) {
-        // TODO: or delete
-        //check pressed key and update position of player
         if (getCollisionComponent().getCollisionListener().getIsCollidedWithWall()) {
             getAABB().moveIfCollide(getCollisionComponent().collidedWall);
         }
@@ -60,8 +56,6 @@ public class Player extends AbstractActor {
 
     @Override
     public boolean isDead() {
-        // TODO:
-        //Players do not have health they immediately die if they collide with an enemy
         return !getIsAlive();
     }
 

@@ -1,13 +1,10 @@
 package Components;
 
 import Actors.*;
-import Util.AABB;
-import Util.Position2D;
 
 import java.util.ArrayList;
 
 public class CollisionComponent implements IRealTimeComponent {
-    // TODO:
     private CollisionListener collisionListener;
     private AbstractActor actor;
 

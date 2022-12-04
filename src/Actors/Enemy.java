@@ -10,7 +10,6 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Enemy extends AbstractActor {
-    // TODO:
     private String type;
     private AbstractPatrolStrategy patrolStrategy;
 
@@ -34,13 +33,11 @@ public class Enemy extends AbstractActor {
 
     @Override
     public boolean isDead() {
-        // TODO:
         return !getIsAlive();
     }
 
     @Override
     public void update(float deltaT, Graphics2D g) {
-        // TODO: or delete
         if (getCollisionComponent().getCollisionListener().getIsCollidedWithWall()) {
             getAABB().moveIfCollide(getCollisionComponent().collidedWall);
             if (type.equals("Horizontal") || type.equals("Vertical")) {
@@ -59,7 +56,6 @@ public class Enemy extends AbstractActor {
         getCollisionComponent().getCollisionListener().setIsCollidedWithWall(false);
         super.update(deltaT, g);
     }
-    //TODO: Position of the enemy
 
     public String getType() {
         return type;

@@ -3,10 +3,9 @@ package Components;
 public abstract class AbstractPatrolStrategy implements IRealTimeComponent {
     private int speed;
 
-    // TODO:
     @Override
     public void update(float deltaT) {
-        // TODO:
+        System.err.println("ERROR: AbstractPatrolStrategy.update() is not implemented.");
     }
 
     public int getSpeed() {

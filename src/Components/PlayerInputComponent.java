@@ -14,9 +14,7 @@ public class PlayerInputComponent implements IRealTimeComponent, KeyListener {
     private boolean firePressed;
     private String lastKeyPressed;
     private static PlayerInputComponent instance = new PlayerInputComponent();
-    // TODO: Add additional properties if required
 
-    // TODO: Implement a constructor
     private PlayerInputComponent() {
         leftPressed = false;
         rightPressed = false;
@@ -28,7 +26,7 @@ public class PlayerInputComponent implements IRealTimeComponent, KeyListener {
 
     @Override
     public void update(float deltaT) {
-        // TODO:
+        System.err.println("ERROR: PlayerInputComponent.update() is not implemented.");
     }
 
     public static PlayerInputComponent getInstance() {
@@ -57,8 +55,6 @@ public class PlayerInputComponent implements IRealTimeComponent, KeyListener {
             lastKeyPressed = "down";
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) firePressed = true;
-        // TODO: You can also change this code if you want to handle inputs differently
-        // this is given as a guideline to read key events
     }
 
     @Override
@@ -67,10 +63,7 @@ public class PlayerInputComponent implements IRealTimeComponent, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) rightPressed = false;
         if (e.getKeyCode() == KeyEvent.VK_UP) upPressed = false;
         if (e.getKeyCode() == KeyEvent.VK_DOWN) downPressed = false;
-        // Enforce release operation on fire
         if (e.getKeyCode() == KeyEvent.VK_SPACE) firePressed = false;
-        // TODO: You can also change this code if you want to handle inputs differently
-        // this is given as a guideline to read key events
     }
 
     public boolean isUpPressed() {
